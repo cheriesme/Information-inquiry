@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>主页</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/tree.css" rel="stylesheet" th:href="@{/css/tree.css}">
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../static/css/dashaboard.css" th:href="@{/css/dashaboard.css}">
+    <link href="../static/css/navstyle.css" th:href="@{/css/navstyle.css}" rel="stylesheet" type="text/css" />
+    <script src="../static/js/jquery.min.js" type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js" type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/jquery.slim.min.js" type="text/javascript" th:src="@{/js/jquery.slim.min.js}"></script>
+    <script src="../static/js/popper.min.js" type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+    <script src="../static/js/jquery.slimscroll.min.js" type="text/javascript" th:src="@{/js/jquery.slimscroll.min.js}"></script>
+    <script src="../static/js/jquery.metisMenu.js" type="text/javascript" th:src="@{/js/jquery.metisMenu.js}"></script>
+    <script src="../static/js/jquery.contextMenu.min.js" type="text/javascript" th:src="@{/js/jquery.contextMenu.min.js}"></script>
+    <script src="../static/js/bootstrap-treetable.js" type="text/javascript" th:src="@{/js/bootstrap-treetable.js}"></script>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div th:replace="common/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar" th:fragment="sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:class="${activeurl=='main'?'nav-link active':'nav-link'}" href="#">
+                            <span data-feather="home"></span>
+                            系统设置<span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" th:class="${activeurl=='pemp'?'nav-link active':'nav-link'}" th:href="@{/main/pemp/}+${session.account}">
+                                    <span data-feather="layers"></span>
+                                    个人信息
+                                </a>
+                            </li>
+
+
+                </ul>
+
+            </div>
+        </nav>
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="dashboard.js"></script></body>
+</html>

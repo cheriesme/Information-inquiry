@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/2005/Atom">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="">
+    <title>登陆</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/css/signin.css" th:href="@{/css/signin.css}">
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+
+
+
+
+</head>
+<body class="text-center">
+<form class="form-signin" action="user/list.html" th:action="@{/user/login} " method="post">
+    <img class="mb-4" th:src="@{/static/img/poperlogo.png}" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
+    <!--登陆错误提醒-->
+    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+    <label for="inputaccount" class="sr-only">Account</label>
+    <input type="text" id="inputaccount" class="form-control" name="account" placeholder="账户" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="密码" required>
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> 记住我
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+    <p class="mt-5 mb-3 text-muted">测试项目</p>
+</form>
+</body>
+</html>

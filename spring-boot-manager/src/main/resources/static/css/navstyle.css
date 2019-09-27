@@ -1,0 +1,112 @@
+/* 设置菜单项*/
+.flex-column{
+    font-size:16px !important;
+    margin: auto!important;
+
+
+
+}
+
+.flex-column li dl {
+    width:99%!important;
+    text-align: center!important;
+
+
+
+}
+
+
+.flex-column li  dt {
+    display: block!important;
+    color:white!important;
+}
+
+
+/* 设置菜单项的dt */
+/* 设置菜单项的dt */
+.flex-column li dt {
+    background-color:#2C2C1C!important;
+    font-size: 18px;
+    height: 50px!important;
+    position: relative!important;
+    border: 1px solid white!important;
+    line-height: 2.6!important;
+    color: white!important;
+
+
+}
+
+
+.flex-column li  dt a, .flex-column li dt a:visited {
+
+    color: white!important;
+    text-decoration: none !important;
+    text-align: center!important;
+
+}
+
+
+/* 设置菜单项的dd */
+dd {
+    /*padding: 5px;*/
+    background-color:#2C2C1C !important;
+    text-align: center;
+    border: 1px solid white;
+    color: white ;
+    display: none;
+}
+
+
+
+.flex-column li dd a, .flex-column li dd a:visited {
+
+    color: white!important;
+    text-decoration: none!important;
+    /*padding: 4px 5px 4px 20px !importent;*/
+
+}
+/*关闭子菜单*/
+
+
+
+/* 设置鼠标响应 */
+/*.flex-column li :hover dd {*/
+/*display: block !importent;*/
+/*}*/
+
+.svg2 :active dd {
+    display: block!important;
+}
+
+.flex-column li dd a:hover {
+    color: white!important;
+}
+.svg1{
+    position: absolute!important;
+    left: 10px;
+    float: left;
+    margin-top:15px!important;
+
+}
+.svg2{
+    position: absolute!important;
+    margin-left: 40%;
+    float: right;
+    margin-top: -40px!important;
+
+
+}
+
+/*手势*/
+dt:hover{
+
+    cursor: pointer!important;
+
+}
+
+
+/*dd:hover{*/
+
+/*cursor: pointer!importent;*/
+
+/*}*/

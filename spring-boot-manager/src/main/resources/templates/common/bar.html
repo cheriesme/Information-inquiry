@@ -1,0 +1,150 @@
+DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/skins.css" th:href="@{/css/skins.css}">
+    <link rel="stylesheet" href="../static/css/style.css"th:href="@{/css/style.css}">
+    <link href="../static/css/tree.css" rel="stylesheet" th:href="@{/css/tree.css}">
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../static/css/dashaboard.css" th:href="@{/css/dashaboard.css}">
+    <link href="../static/css/navstyle.css" th:href="@{/css/navstyle.css}" rel="stylesheet" type="text/css" />
+    <script src="../static/js/jquery.min.js" type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js" type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/jquery.slim.min.js" type="text/javascript" th:src="@{/js/jquery.slim.min.js}"></script>
+    <script src="../static/js/popper.min.js" type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+    <script src="../static/js/jquery.slimscroll.min.js" type="text/javascript" th:src="@{/js/jquery.slimscroll.min.js}"></script>
+    <script src="../static/js/jquery.metisMenu.js" type="text/javascript" th:src="@{/js/jquery.metisMenu.js}"></script>
+    <script src="../static/js/jquery.contextMenu.min.js" type="text/javascript" th:src="@{/js/jquery.contextMenu.min.js}"></script>
+    <script src="../static/js/bootstrap-treetable.js" type="text/javascript" th:src="@{/js/bootstrap-treetable.js}"></script>
+</head>
+<body>
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow" th:fragment="topbar"style="">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">权限管理系统</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"style="margin-left: 60%">你好，[[${session.account}]]</a>
+
+
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="/logout" style="color: white">
+                注销</a>
+        </li>
+    </ul>
+</nav>
+
+<nav class="col-md-2 d-none d-md-block bg-light sidebar" th:fragment="sidebar">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li>
+                <dl>
+                    <dt class="nav-item ">
+
+                        <svg t="1569315128148" class="icon svg1" viewBox="0 0 1024 1024" version="1.1"
+                             xmlns="http://www.w3.org/2000/svg" p-id="9790" width="20" height="20">
+                            <path d="M965.064748 424.996835h-5.746187a59.377266 59.377266 0 0 1-56.209496-41.328346 399.433669 399.433669 0 0 0-23.795108-57.314532 59.524604 59.524604 0 0 1 10.461007-69.101583l4.125468-4.125468a58.935252 58.935252 0 0 0 0-83.319712L854.561151 130.099568a58.935252 58.935252 0 0 0-83.319712 0l-4.125468 4.125468a59.524604 59.524604 0 0 1-69.101583 10.461007 399.433669 399.433669 0 0 0-57.314532-23.795108 59.377266 59.377266 0 0 1-41.328345-56.209496V58.935252a58.935252 58.935252 0 0 0-58.935252-58.935252h-56.504173a58.935252 58.935252 0 0 0-58.935251 58.935252v5.746187a59.377266 59.377266 0 0 1-41.328346 56.209496 399.433669 399.433669 0 0 0-57.314532 23.795108 59.524604 59.524604 0 0 1-69.101583-10.461007l-4.125468-4.125468a58.935252 58.935252 0 0 0-83.319712 0l-39.707626 39.707626a58.935252 58.935252 0 0 0 0 83.319712l4.125468 4.125468a59.524604 59.524604 0 0 1 10.461007 69.101583 399.433669 399.433669 0 0 0-23.795108 57.314532 59.377266 59.377266 0 0 1-56.209496 41.328346H58.935252a58.935252 58.935252 0 0 0-58.935252 58.935251v56.135828a58.935252 58.935252 0 0 0 58.935252 58.935251h5.746187a59.377266 59.377266 0 0 1 56.209496 41.328346 399.433669 399.433669 0 0 0 23.795108 57.314532 59.524604 59.524604 0 0 1-10.461007 69.101583l-4.125468 4.125468a58.935252 58.935252 0 0 0 0 83.319712l39.707626 39.707626a58.935252 58.935252 0 0 0 83.319712 0l4.125468-4.125468a59.524604 59.524604 0 0 1 69.101583-10.461007 399.433669 399.433669 0 0 0 57.314532 23.795108 59.377266 59.377266 0 0 1 41.328346 56.209496v5.746187a58.935252 58.935252 0 0 0 58.935251 58.935252h56.135828a58.935252 58.935252 0 0 0 58.935251-58.935252v-5.746187a59.377266 59.377266 0 0 1 41.328346-56.209496 399.433669 399.433669 0 0 0 57.314532-23.795108 59.524604 59.524604 0 0 1 69.101583 10.461007l4.125468 4.125468a58.935252 58.935252 0 0 0 83.319712 0l39.707626-39.707626a58.935252 58.935252 0 0 0 0-83.319712l-4.125468-4.125468a59.524604 59.524604 0 0 1-10.461007-69.101583 399.433669 399.433669 0 0 0 23.795108-57.314532 59.377266 59.377266 0 0 1 56.209496-41.328346h5.746187a58.935252 58.935252 0 0 0 58.935252-58.935251v-56.135828a58.935252 58.935252 0 0 0-58.935252-58.935251zM512 659.338129a147.338129 147.338129 0 1 1 147.338129-147.338129 147.338129 147.338129 0 0 1-147.338129 147.338129z"
+                                  fill="#ffffff" p-id="9791"></path>
+                        </svg>
+
+
+                        <a class="nav-link active" th:class="${activeurl=='main'?'nav-link active':'nav-link'}"
+                           href="/main">
+                            <span data-feather="home"></span>
+
+                            系统管理<span class="sr-only">(current)</span>
+
+                        </a>
+
+                        <div>
+
+                            <svg t="1569315241009" class="icon svg2" viewBox="0 0 1970 1024" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" p-id="10591" width="20" height="20"
+                                 onclick="list()">
+                                <path d="M134.676726 23.205095C103.889261-7.582424 54.208966-7.818617 23.233798 23.156551L23.233798 23.156551C-7.526885 53.91725-7.681113 103.635991 22.86611 134.183191L858.965094 970.282221C920.335463 1031.652583 1019.802547 1031.686508 1081.206865 970.282221L1917.305849 134.183191C1947.863469 103.625571 1947.913329 54.131711 1916.938161 23.156551L1916.938161 23.156551C1886.177478-7.60416 1836.476309-7.775951 1805.495233 23.205095L1025.831743 802.868601C995.0442 833.656121 945.321292 833.849653 914.340216 802.868601L134.676726 23.205095 134.676726 23.205095Z"
+                                      p-id="10592" fill="#ffffff"></path>
+                            </svg>
+
+
+                        </div>
+
+
+                    </dt>
+
+
+
+
+                    <dd class="nav-item">
+                        <a class="nav-link active" th:class="${activeurl=='umps'?'nav-link active':'nav-link'}" href="#"
+                           th:href="@{/main/umps}">
+                            <span data-feather="file"></span>
+
+                            用户管理
+                        </a>
+                    </dd>
+
+                    <dd class="nav-item">
+                        <a class="nav-link active" href="#"
+                           th:class="${activeurl=='remps'?'nav-link active':'nav-link'}" th:href="@{/main/remps}">
+                            <span data-feather="shopping-cart"></span>
+
+                            角色管理
+                        </a>
+                    </dd>
+
+                    <dd class="nav-item">
+                        <a class="nav-link active" href="#"
+                           th:class="${activeurl=='demps'?'nav-link active':'nav-link'}" th:href="@{/main/demps}">
+                            <span data-feather="shopping-cart"></span>
+
+                            部门管理
+                        </a></dd>
+
+                    <dd class="nav-item">
+                        <a class="nav-link active" href="#" th:href="@{/main/semps}"
+                           th:class="${activeurl=='semps'?'nav-link active':'nav-link'}">
+                            <span data-feather="bar-chart-2"></span>
+
+                            岗位管理
+                        </a></dd>
+
+                    <dd class="last nav-item">
+                        <a class="nav-link active" href="#"
+                           th:class="${activeurl=='puemp'?'nav-link active':'nav-link'}"
+                           th:href="@{/main/puemp/}+${session.account}">
+                            <span data-feather="layers"></span>
+
+                            个人信息
+                        </a></dd>
+                </dl>
+            </li>
+            <script type="text/javascript">
+
+                function list() {
+                    // $(document).ready(function() {
+                    // var $dh1 = $("#pop").display();
+                    // alert($dh1) //这个出来没有 px
+                    var $dh2 = $("dd").css("display");
+                    if(($dh2)=='none'){
+                        //  $dh2='block';
+
+                        // $("dd").css("display")=$dh2;    $("dd").css("display")必须作为赋值项
+                        $("dd").css('display','block');
+                        // setCookie("aaaa",111,123);//第三个参数应该是有效期天数，很少用，不确定。
+                    }
+                    else
+                    {
+                        $("dd").css('display','none');
+                    }
+
+                    // })
+                }
+
+
+            </script>
+
+        </ul>
+
+    </div>
+</nav>
+</body>
+</html>

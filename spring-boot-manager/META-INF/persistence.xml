@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="myJpa" transaction-type="RESOURCE_LOCAL">
+    <!--配置 JPA 规范的服务提供商 -->
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <properties>
+        <!-- 数据库驱动 -->
+        <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+        <!-- 数据库地址 -->
+        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/table_userma" />
+        <!-- 数据库用户名 -->
+        <property name="javax.persistence.jdbc.user" value="root" />
+        <!-- 数据库密码 -->
+        <property name="javax.persistence.jdbc.password" value="" />
+        <!--jpa 提供者的可选配置：我们的 JPA 规范的提供者为 hibernate，所以 jpa 的核心配 置中兼容 hibernate
+            的配 -->
+        <!--
+            show_sql:       显示sql
+            format_sql:     格式化sql
+            hbm2ddl.auto：     自动创建|更新|验证数据库表结构
+         -->
+        <property name="hibernate.show_sql" value="true" />
+        <property name="hibernate.format_sql" value="true" />
+        <property name="hibernate.hbm2ddl.auto" value="update" />
+    </properties>
+
+</persistence-unit>
+</persistence>

@@ -1,0 +1,97 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>主页</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/tree.css" rel="stylesheet" th:href="@{/css/tree.css}">
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../static/css/dashaboard.css" th:href="@{/css/dashaboard.css}">
+    <link href="../static/css/navstyle.css" th:href="@{/css/navstyle.css}" rel="stylesheet" type="text/css" />
+    <script src="../static/js/jquery.min.js" type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js" type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/jquery.slim.min.js" type="text/javascript" th:src="@{/js/jquery.slim.min.js}"></script>
+    <script src="../static/js/popper.min.js" type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+    <script src="../static/js/jquery.slimscroll.min.js" type="text/javascript" th:src="@{/js/jquery.slimscroll.min.js}"></script>
+    <script src="../static/js/jquery.metisMenu.js" type="text/javascript" th:src="@{/js/jquery.metisMenu.js}"></script>
+    <script src="../static/js/jquery.contextMenu.min.js" type="text/javascript" th:src="@{/js/jquery.contextMenu.min.js}"></script>
+    <script src="../static/js/bootstrap-treetable.js" type="text/javascript" th:src="@{/js/bootstrap-treetable.js}"></script>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div th:replace="common/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="common/bar::sidebar(activeurl='remps')"></div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <h2><a class="btn btn-sm btn-success" href="#" th:href="@{/main/remp}">新增</a> <a href="#" class="btn btn-sm btn-success"> 修改</a>
+                <a href="#"class="btn btn-sm btn-success"> 删除</a> </h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" name="checkbox0" id="xx" /></th>
+                        <th>I D</th>
+                        <th>角色ID</th>
+                        <th>角色</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr th:each="remp:${remps}"  >
+                        <td><input type="checkbox" name="checkbox0" id="xx" /></td>
+                        <td><span th:text="${remp.id}"></span></td>
+                        <td><span th:text="${remp.roleId}"></span></td>
+                        <td><span th:text="${remp.rolename}"></span></td>
+                        <td><a class="btn btn-sm btn-primary" th:href="@{/main/reempe/}+${remp.id}" >编辑</a>
+                            <button th:attr="Dle_url=@{/main/rempd/}+${remp.id}" type="submit" class="btn btn-sm btn-danger deleteBtn" >删除</button>
+                        </td>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <form id="deleteEmpeform" method="post">
+            <input type="hidden" name="_method" value="delete">
+        </form>
+    </div>
+</div>
+<script>
+    $(".deleteBtn").click(function () {
+
+        if(confirm("确定要删除吗？"))
+        {
+            $("#deleteEmpeform").attr("action", $(this).attr("Dle_url")).submit();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    });
+</script>
+</body>
+</html>

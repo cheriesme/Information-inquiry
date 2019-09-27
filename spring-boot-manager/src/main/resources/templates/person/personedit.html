@@ -1,0 +1,168 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>主页</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/tree.css" rel="stylesheet" th:href="@{/css/tree.css}">
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../static/css/dashaboard.css" th:href="@{/css/dashaboard.css}">
+    <link href="../static/css/navstyle.css" th:href="@{/css/navstyle.css}" rel="stylesheet" type="text/css" />
+    <script src="../static/js/jquery.min.js" type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js" type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/jquery.slim.min.js" type="text/javascript" th:src="@{/js/jquery.slim.min.js}"></script>
+    <script src="../static/js/popper.min.js" type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+    <script src="../static/js/jquery.slimscroll.min.js" type="text/javascript" th:src="@{/js/jquery.slimscroll.min.js}"></script>
+    <script src="../static/js/jquery.metisMenu.js" type="text/javascript" th:src="@{/js/jquery.metisMenu.js}"></script>
+    <script src="../static/js/jquery.contextMenu.min.js" type="text/javascript" th:src="@{/js/jquery.contextMenu.min.js}"></script>
+    <script src="../static/js/bootstrap-treetable.js" type="text/javascript" th:src="@{/js/bootstrap-treetable.js}"></script>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div th:replace="common/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar" th:fragment="sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:class="${activeurl=='main'?'nav-link active':'nav-link'}" href="/mainperson">
+                            <span data-feather="home"></span>
+                            系统设置<span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" th:class="${activeurl=='pemp'?'nav-link active':'nav-link'}" th:href="@{/main/pemp/}+${session.account}">
+                            <span data-feather="layers"></span>
+                            个人信息
+                        </a>
+                    </li>
+
+                </ul>
+            </div>]
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <form th:action="@{/main/epempe}" method="post">
+                <input type="hidden" name="_method" value="put" th:if="${empe!=null}">
+                <input type="hidden" name="id"th:if="${empe!=null}"th:value="${empe.id}">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">工号：</label>
+                    <input name="userid" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter a id" th:value="${empe.userid}">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput2">姓名：</label>
+                    <input name="username" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Enter a name" th:value="${empe.username}">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput3">账户：</label>
+                    <input name="account" type="text" class="form-control" id="exampleFormControlInput3" placeholder="Enter a Account" th:value="${empe.account}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput4">密码：</label>
+                    <input name="password" type="text" class="form-control" id="exampleFormControlInput4" placeholder="Enter a password" th:value="${empe.password}">
+                </div>
+
+                <div class="form-group">
+                    <label>性别：</label><br/>
+                    <div class="form-check form-check-inline">
+                        <input type="radio"class="form-check-input" name="sex" value="1" th:checked="${empe.sex==1}">
+                        <label class="form-check-label">男</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input type="radio"class="form-check-input" name="sex" value="0" th:checked="${empe.sex==0}">
+                        <label class="form-check-label">女</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput5">年龄：</label>
+                    <input name="age" type="text" class="form-control" id="exampleFormControlInput5" placeholder="Enter a age" th:value="${empe.age}">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">部门：</label>
+                    <select name="deparmentname" class="form-control" id="exampleFormControlSelect1" disabled="disabled">
+                        <option th:selected="${empe.deparmentname == empd.deparmentname}" th:each="empd:${empfD}" th:text="${empd.deparmentname}" th:value="${empd.deparmentname}">1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">岗位：</label>
+                    <select name="staffname" class="form-control" id="exampleFormControlSelect2"disabled="disabled">
+                        <option th:selected="${empe.staffname == emps.staffname}" th:each="emps:${empfs}" th:text="${emps.staffname}" th:value="${emps.staffname}">1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect3">角色：</label>
+                    <select name="rolename" class="form-control" id="exampleFormControlSelect3" disabled="disabled">
+                        <option th:selected="${empe.rolename == empr.rolename}" th:each="empr:${empfR}" th:text="${empr.rolename}" th:value="${empr.rolename}">1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput6">住址：</label>
+                    <input name="address" type="text" class="form-control" id="exampleFormControlInput6" placeholder="Enter a address" th:value="${empe.address}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput7">手机号：</label>
+                    <input name="phone" type="text" class="form-control" id="exampleFormControlInput7" placeholder="Enter a phone" th:value="${empe.phone}">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-sm btn-primary"type="submit" onclick="return rel()">编辑</button>
+                    <button class="btn btn-sm btn-danger" type="reset">重置</button>
+                    <input type="button" class="btn btn-sm btn-primary"  value="返回" onclick="javascript:history.go(-1);"/>
+                </div>
+
+            </form>
+        </main>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="dashboard.js"></script>
+<script>
+$(function(){
+   $("#exampleFormControlInput1,#exampleFormControlInput2").attr("disabled",true);
+});
+function rel()
+{
+    if(confirm("确定要修改吗？"))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+// document.getElementsByTagName("input").disabled = true;
+</script>
+</body>
+</html>

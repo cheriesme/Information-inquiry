@@ -1,0 +1,107 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>主页</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../static/css/dashaboard.css" th:href="@{/css/dashaboard.css}">
+    <link href="../static/css/navstyle.css" th:href="@{/css/navstyle.css}" rel="stylesheet" type="text/css" />
+    <script src="../static/js/jquery.min.js" type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js" type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/jquery.slim.min.js" type="text/javascript" th:src="@{/js/jquery.slim.min.js}"></script>
+    <script src="../static/js/popper.min.js" type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div th:replace="common/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="common/bar::sidebar(activeurl='puemp')"></div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <h2> 您的个人信息：</h2><span><a th:href="@{/main/puemp/}+${session.account}">刷新</a></span>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>I D</th>
+                        <th>工号</th>
+                        <th>姓名</th>
+                        <th>账号</th>
+                        <th>密码</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>住址</th>
+                        <th>号码</th>
+                        <th>部门</th>
+                        <th>岗位</th>
+                        <th>角色</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr th:each="nav:${puemps}"  >
+                        <td><span th:text="${nav.id}"></span></td>
+                        <td><span th:text="${nav.userid}"></span></td>
+                        <td><span th:text="${nav.username}"></span></td>
+                        <td><span th:text="${nav.account}"></span></td>
+                        <td><span th:text="${nav.password}"></span></td>
+                        <td><span th:text="${nav.sex==0?'女':'男'}"></span></td>
+                        <td><span th:text="${nav.age}"></span></td>
+                        <td><span th:text="${nav.address}"></span></td>
+                        <td><span th:text="${nav.phone}"></span></td>
+                        <td><span th:text="${nav.deparmentname}"></span></td>
+                        <td><span th:text="${nav.staffname}"></span></td>
+                        <td><span th:text="${nav.rolename}"></span></td>
+                        <td>
+                            <a class="btn btn-sm btn-primary" th:href="@{/main/editpersoninadmin/}+${nav.id}" onclick="return del()">编辑</a>
+                            <a class="btn btn-sm btn-primary" href="/main">返回主页</a>
+
+                        </td>
+
+                    </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </main>
+
+    </div>
+</div>
+<script>
+    function del()
+    {
+        if(confirm("确定要修改吗？"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
+
